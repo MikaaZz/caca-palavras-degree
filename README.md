@@ -55,8 +55,6 @@ Ter uma classe descrita a seguir ….
 
 O método *palavrasEntrada* deve atribuir as palavras abaixo à matriz *palavras*:
 
-O método *palavrasEntrada* deve atribuir as palavras abaixo à matriz *palavras*:
-
 ```
 palavras[0][0] = "IFELSE";
 palavras[1][0] = "FORA";
@@ -101,8 +99,6 @@ O método *mapaPesquisa* faz a pesquisa para verificar se as palavras da matri
 
 Como mencionado no inicio do enunciado, "Só é permitido o uso de comandos estudados em sala de aula até o momento.". Bom, para poder pegar um caractere específico ou mesmo a quantidade de caracteres em uma `String` pode-se usar os comandos abaixo. Observe, NÃO é permitido mais nenhum tipo de comando que manipule uma String além destes (os que existem no conteúdo da nossa disciplina).
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/87e82fcd-0e98-41f5-93bb-4bd0814aaacd/Untitled.png)
-
 ## **Exemplo da execução:**
 
 ---
@@ -113,11 +109,7 @@ As mensagens mostradas ao executar o código deste trabalho devem seguir o que �
 
 Abra o console do Windows pressionando a tecla Windows e depois digitando `cmd` e pressionar `enter`. Se for Linux ou MacOS abra o “terminal"
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/b75edf71-e38f-4b2f-a6ea-ad8620c55305/Untitled.png)
-
 Agora mude de pasta, para pasta que tem o **TrabalhoFinal.jar**. No meu caso para pasta de Download
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/a9c01e67-e430-4356-9cb9-0da8aa3becaa/Untitled.png)
 
 E para executar digitar:
 
