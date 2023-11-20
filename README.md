@@ -1,18 +1,172 @@
-## Getting Started
+# Detalhes:
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+---
 
-## Folder Structure
+## Datas:
 
-The workspace contains two folders by default, where:
+Prazo máximo para definir as equipes: 23/11/2023.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Prazo máximo para apresentação do trabalho: 04/12/2023 (segunda).
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Equipes: mínimo de dois, e máximo com quatro alunos.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Definições:
 
-## Dependency Management
+---
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Só é permitido o uso de comandos estudados em sala de aula até o momento.
+- é permitido o uso do tipo String, mas **não é permitido** o uso de nenhum dos seus métodos.
+- O conteúdo necessário para desenvolver este trabalho em sua grande maioria são conteúdos já abordados nas aulas, mas algumas partes serão explicadas durante as aulas destinadas ao desenvolvimento do trabalho.
+- As dúvidas referente a este trabalho serão respondidas SOMENTE durante os dias/horários das nossas aulas.
+- Lembre de consultar o repositório desta disciplina para ajudar no desenvolvimento deste trabalho.
+- Os trabalhos podem ser desenvolvidos em equipe, mas as avaliações serão individuais, podendo gerar notas diferentes para cada integrante da equipe.
+- Uma vez apresentado o trabalho para avaliação, este não poderá ser reapresentado.
+- A ordem de apresentação dos trabalhos serão definidos pelo professor, e poderão ser somente apresentados durante os dias/horários de aula definidos no cronograma.
+- Durante a apresentação do trabalho o aluno deverá mostrar o código desenvolvido na IDE VSCode (ou outra da sua escolha) para permitir editar e executar o referido código se for preciso.
+- Assim que a equipe quiser fazer a apresentação do trabalho final deve avisar para o professor.
+- A apresentação só poderá ser feita após a equipe postar os fontes (.java) do trabalho no AVA3.
+- O código postado/apresentado não pode ter erros de execução (use comentários para tirar possíveis erros).
+
+Com base nas seguintes descrições, implemente o problema do: **Caça Palavras**.
+
+**ATENÇÃO**: deve seguir fielmente a descrição seguinte. Implementações a mais do descrito no código serão descontadas na nota.
+
+Ter uma classe descrita a seguir ….
+
+## Caca palavras:
+
+---
+
+- o único import que deve ser usado é *java.util.Scanner*;
+- o construtor declara a única ocorrência do objeto *teclado* da classe *Scanner* para permitir ler dados do console usando o teclado;
+- o método main só instância o construtor desta classe;
+- o construtor declara todas as matrizes (*palavras* e *mapa*);
+- a matriz *palavras* tem o tamanho 5 por 2;
+- a matriz *mapa* tem o tamanho 10 por 5;
+- o construtor chama o método *palavrasEntrada* para atribuir as palavras a matriz *palavras*;
+- o construtor chama o método *mapaEntrada* para atribuir os caráteres a matriz *mapa*;
+- o construtor chama o método *mapaPesquisa* para fazer a pesquisa das *palavras* no *mapa* e armazenar em *palavras* se achou a palavra no *mapa*;
+- o construtor controla o "_____ Menu: Caça Palavras _____", que deve ser implementado usando um `Do/While` e seguir as mensagens como demostrado no exemplo de execução. As opções deste menu são:
+    - opção 1: chamar o método *palavrasImprimir*;
+    - opção 2: chamar o método *mapaImprimir*;
+    - opção 3: chamar o método *palavrasRespostas*;
+    - opção 4: sair;
+    - consistir se foi digitado uma opção errada "Opção ERRADA, tente novamente!...".
+
+O método *palavrasEntrada* deve atribuir as palavras abaixo à matriz *palavras*:
+
+O método *palavrasEntrada* deve atribuir as palavras abaixo à matriz *palavras*:
+
+```
+palavras[0][0] = "IFELSE";
+palavras[1][0] = "FORA";
+palavras[2][0] = "WHILE";
+palavras[3][0] = "OBJETO";
+palavras[4][0] = "VETOR";
+
+```
+
+O método *palavrasImprimir* deve imprimir as palavras da matriz *palavras*.
+
+O método *palavrasRespostas* usa a segunda coluna da matriz *palavras* e se a palavra não foi encontrada imprime "Palavra NÃO encontrada". Mas se a palavra foi encontrada deve-se imprimir a linha e coluna do mapa do primeiro caratere da palavra (conforme demostrado no exemplo de execução).
+
+O método *mapaEntrada* deve atribuir os caracteres abaixo à matriz *mapa*:
+
+```
+mapa[ 0][ 0]='D';  mapa[ 0][ 1]='C';  mapa[ 0][ 2]='Q';  mapa[ 0][ 3]='W';  mapa[ 0][ 4]='E';
+mapa[ 1][ 0]='I';  mapa[ 1][ 1]='X';  mapa[ 1][ 2]='F';  mapa[ 1][ 3]='O';  mapa[ 1][ 4]='R';
+mapa[ 2][ 0]='F';  mapa[ 2][ 1]='F';  mapa[ 2][ 2]='R';  mapa[ 2][ 3]='G';  mapa[ 2][ 4]='F';
+mapa[ 3][ 0]='E';  mapa[ 3][ 1]='L';  mapa[ 3][ 2]='I';  mapa[ 3][ 3]='H';  mapa[ 3][ 4]='W';
+mapa[ 4][ 0]='L';  mapa[ 4][ 1]='S';  mapa[ 4][ 2]='F';  mapa[ 4][ 3]='O';  mapa[ 4][ 4]='U';
+mapa[ 5][ 0]='S';  mapa[ 5][ 1]='D';  mapa[ 5][ 2]='G';  mapa[ 5][ 3]='T';  mapa[ 5][ 4]='S';
+mapa[ 6][ 0]='E';  mapa[ 6][ 1]='J';  mapa[ 6][ 2]='H';  mapa[ 6][ 3]='E';  mapa[ 6][ 4]='T';
+mapa[ 7][ 0]='I';  mapa[ 7][ 1]='I';  mapa[ 7][ 2]='I';  mapa[ 7][ 3]='J';  mapa[ 7][ 4]='M';
+mapa[ 8][ 0]='X';  mapa[ 8][ 1]='C';  mapa[ 8][ 2]='K';  mapa[ 8][ 3]='B';  mapa[ 8][ 4]='G';
+mapa[ 9][ 0]='V';  mapa[ 9][ 1]='E';  mapa[ 9][ 2]='T';  mapa[ 9][ 3]='O';  mapa[ 9][ 4]='R';
+
+```
+
+O método *mapaImprimir* deve imprimir os caracteres da matriz *mapa* conforme demostrado no exemplo de execução.
+
+O método *mapaPesquisa* faz a pesquisa para verificar se as palavras da matriz *palavras* se encontram na matriz *mapa*.
+
+**Observações**:
+
+- caso julgue necessário podem ser criados novos métodos *private* para serem chamados pelo método *mapaPesquisa*;
+- a busca por palavras no mapa (método *mapaPesquisa*) só precisam tratar de palavras que podem aparecer na horizontal (da esquerda para direita e da direita para esquerda) e na vertical (de cima para baixo e de baixo para cima).
+
+## **Manipular Strings:**
+
+---
+
+Como mencionado no inicio do enunciado, "Só é permitido o uso de comandos estudados em sala de aula até o momento.". Bom, para poder pegar um caractere específico ou mesmo a quantidade de caracteres em uma `String` pode-se usar os comandos abaixo. Observe, NÃO é permitido mais nenhum tipo de comando que manipule uma String além destes (os que existem no conteúdo da nossa disciplina).
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/87e82fcd-0e98-41f5-93bb-4bd0814aaacd/Untitled.png)
+
+## **Exemplo da execução:**
+
+---
+
+As mensagens mostradas ao executar o código deste trabalho devem seguir o que é mostrado ao executar o [TrabalhoFinal.jar](https://github.com/dalton-reis/IP_Noturno_2023_2/blob/main/TrabalhoFinal/TrabalhoFinal.jar).****
+
+### **Como executar um JAR:**
+
+Abra o console do Windows pressionando a tecla Windows e depois digitando `cmd` e pressionar `enter`. Se for Linux ou MacOS abra o “terminal"
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/b75edf71-e38f-4b2f-a6ea-ad8620c55305/Untitled.png)
+
+Agora mude de pasta, para pasta que tem o **TrabalhoFinal.jar**. No meu caso para pasta de Download
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d00e4c14-681e-4e54-b67e-40995967f006/a9c01e67-e430-4356-9cb9-0da8aa3becaa/Untitled.png)
+
+E para executar digitar:
+
+- java -jar TrabalhoFinal.jar
+
+Pronto, é só usar ... e ver como deve ficar as saídas.
+
+# Gabarito:
+
+---
+
+## Geral:
+
+[-0,5] ter mais imports do que o *java.util.Scanner*
+
+[-0,5] ter mais de uma instância *teclado* / *Scanner* / *close*
+
+[-0,5] o método main só instância o construtor desta classe
+
+[0,5] o construtor declara todas as matrizes (*palavras* e *mapa)
+
+---
+
+## Menu:
+
+[0,50] uso DoWhile
+
+[0,50] uso Switch/Case
+
+---
+
+## Palavras
+
+[0,25] a matriz *palavras* tem o tamanho 5 por 2
+
+[0,50] O método *palavrasEntrada*
+
+[0,50] O método *palavrasImprimir*
+
+[1.50] usar matriz *palavras* para armazenar as respostas ("Palavra NÃO encontrada" ou linha/coluna)
+
+---
+
+## Mapa
+
+[0,25] a matriz *mapa* tem o tamanho 10 por 5
+
+[1,00] O método *mapaEntrada*
+
+[1,50] O método *mapaImprimir*
+
+[3,00] O método *mapaPesquisa*
