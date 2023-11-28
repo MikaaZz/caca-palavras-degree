@@ -10,6 +10,7 @@ public class TrabalhoFinal {
 
         palavrasEntrada(palavras);
         mapaEntrada(mapa);
+        mapaPesquisa(palavras, mapa, mapaLinhasTamanho, mapaColunasTamanho);
 
         do {
             System.out.println("_____ Menu: Caça Palavras _____");
@@ -35,6 +36,8 @@ public class TrabalhoFinal {
                     break;
             }
         } while (usuarioEscolhendo);
+
+        scanner.close();
     }
 
     private void palavrasEntrada(String[][] palavras) {
@@ -57,6 +60,9 @@ public class TrabalhoFinal {
         for (int i = 0; i < palavras.length; i++) {
             System.out.println(palavras[i][0]);
         }
+    }
+
+    private void palavrasResposta() {
     }
 
     private void mapaEntrada(char[][] mapa) {
@@ -112,7 +118,61 @@ public class TrabalhoFinal {
         mapa[9][4] = 'R';
     }
 
-    private void mapaPesquisa() {
+    private void mapaPesquisa(String[][] palavras, char[][] mapa, int mapaLinhasTamanho,
+            int mapaColunasTamanho) {
+
+        for (int i = 0; i < palavras.length; i++) {
+            char[] letras = palavras[i][0].toCharArray();
+            boolean procurando = true;
+            // Varrendo mapa na coluna
+            for (int j = 0; j < mapa.length; j++) {
+                // Varrendo mapa na linha
+                for (int j2 = 0; j2 < mapa[j].length; j2++) {
+                    if (letras[0] == mapa[j][j2] && procurando) {
+                        for (int k = 1; k < letras.length; k++) {
+                            pesquisa(letras, j, j2, mapa, k);
+                            // palavras[i][1] = "[" + j + " , " + j2 + "]";
+                            procurando = false;
+                        }
+                    }
+                    if (!procurando)
+                        break;
+                }
+                if (!procurando)
+                    break;
+            }
+        }
+
+    }
+
+    private void pesquisa(char[] letras, int j, int j2, char[][] mapa, int k) {
+
+        if (letras.length >= j2 + k) {
+            if (j2 + k >= 0 && j2 + k < 5 && letras[j2 + k] == mapa[j][j2 + k]) {
+                System.out.println("Achou a letra " + (k) + " : " + mapa[j][j2 + k]);
+            } else if (j + k >= 0 && j2 + k < 10 && letras[j2 + k] == mapa[j + k][j2]) {
+                System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2]);
+            } else if (j2 - k >= 0 && j2 + k < 5 && letras[j2 + k] == mapa[j][j2 - k]) {
+                System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2 - k]);
+            } else if (j - k >= 0 && j2 + k < 10 && letras[j2 + k] == mapa[j - k][j2]) {
+                System.out.println("Achou a letra " + (k) + " : " + mapa[j - k][j2]);
+            }
+        }
+
+        // if (letras.length >= j2 + k) {
+        // if ((j2 - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j][j2 + k]) {
+        // System.out.println("Achou a letra " + (k) + " : " + mapa[j][j2 + k]);
+        // } else if ((j - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j +
+        // k][j2]) {
+        // System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2]);
+        // } else if ((j2 - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j][j2 -
+        // k]) {
+        // System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2 - k]);
+        // } else if ((j - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j -
+        // k][j2]) {
+        // System.out.println("Achou a letra " + (k) + " : " + mapa[j - k][j2]);
+        // }
+        // }
 
     }
 
