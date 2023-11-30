@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class TrabalhoFinal {
-    private TrabalhoFinal() {
+public class App {
+    private App() {
         Scanner scanner = new Scanner(System.in);
         final int palavrasLinhasTamanho = 5, palavrasColunasTamanho = 2, mapaLinhasTamanho = 10, mapaColunasTamanho = 5;
         String[][] palavras = new String[palavrasLinhasTamanho][palavrasColunasTamanho];
@@ -10,7 +10,7 @@ public class TrabalhoFinal {
 
         palavrasEntrada(palavras);
         mapaEntrada(mapa);
-        mapaPesquisa(palavras, mapa, mapaLinhasTamanho, mapaColunasTamanho);
+        mapaPesquisa(palavras, mapa);
 
         do {
             System.out.println("_____ Menu: Caça Palavras _____");
@@ -27,6 +27,7 @@ public class TrabalhoFinal {
                     mapaImprimir(palavras, mapa, mapaLinhasTamanho, mapaColunasTamanho);
                     break;
                 case 3:
+                    palavrasResposta(palavras);
                     break;
                 case 4:
                     usuarioEscolhendo = false;
@@ -62,7 +63,17 @@ public class TrabalhoFinal {
         }
     }
 
-    private void palavrasResposta() {
+    private void palavrasResposta(String[][] palavras) {
+        for (int i = 0; i < palavras.length; i++) {
+            String palavra = palavras[i][0];
+            String resultado = palavras[i][1];
+
+            if (resultado == null || resultado.equals("Palavra NÃO encontrada")) {
+                System.out.println(palavra + ": Palavra NÃO encontrada");
+            } else {
+                System.out.println(palavra + ": Encontrada na posição " + resultado);
+            }
+        }
     }
 
     private void mapaEntrada(char[][] mapa) {
@@ -119,106 +130,79 @@ public class TrabalhoFinal {
     }
 
     private void mapaPesquisa(String[][] palavras, char[][] mapa) {
-    for (int i = 0; i < palavras.length; i++) {
-        String palavra = palavras[i][0];
-        boolean encontrada = false;
+        for (int i = 0; i < palavras.length; i++) {
+            String palavra = palavras[i][0];
+            boolean encontrada = false;
 
-// Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada )
-        for (int linha = 0; linha < mapa.length && !encontrada; linha++) {
-// Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada )
-            for (int coluna = 0; coluna < mapa[linha].length && !encontrada; coluna++) {
-                encontrada = buscaHorizontalEsquerdaDireita(palavra, mapa, linha, coluna) ||
-                             buscaHorizontalDireitaEsquerda(palavra, mapa, linha, coluna) ||
-                             buscaVerticalCimaBaixo(palavra, mapa, linha, coluna) ||
-                             buscaVerticalBaixoCima(palavra, mapa, linha, coluna);
+            // Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada
+            // )
+            for (int linha = 0; linha < mapa.length && !encontrada; linha++) {
+                // Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada
+                // )
+                for (int coluna = 0; coluna < mapa[linha].length && !encontrada; coluna++) {
+                    encontrada = buscaHorizontalEsquerdaDireita(palavra, mapa, linha, coluna) ||
+                            buscaHorizontalDireitaEsquerda(palavra, mapa, linha, coluna) ||
+                            buscaVerticalCimaBaixo(palavra, mapa, linha, coluna) ||
+                            buscaVerticalBaixoCima(palavra, mapa, linha, coluna);
 
-                if (encontrada) {
-                    palavras[i][1] = "[" + linha + ", " + coluna + "]";
+                    if (encontrada) {
+                        palavras[i][1] = "[" + linha + ", " + coluna + "]";
+                    }
                 }
             }
-        }
 
-        if (!encontrada) {
-            palavras[i][1] = "Palavra NÃO encontrada";
-        }
-    }
-}
-
-private boolean buscaHorizontalEsquerdaDireita(String palavra, char[][] mapa, int linha, int colunaInicial) {
-    if (colunaInicial + palavra.length() > mapa[linha].length) return false;
-
-    for (int i = 0; i < palavra.length(); i++) {
-        if (mapa[linha][colunaInicial + i] != palavra.charAt(i)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-private boolean buscaHorizontalDireitaEsquerda(String palavra, char[][] mapa, int linha, int colunaFinal) {
-    if (colunaFinal < palavra.length() - 1) return false;
-
-    for (int i = 0; i < palavra.length(); i++) {
-        if (mapa[linha][colunaFinal - i] != palavra.charAt(i)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-private boolean buscaVerticalCimaBaixo(String palavra, char[][] mapa, int linhaInicial, int coluna) {
-    if (linhaInicial + palavra.length() > mapa.length) return false;
-
-    for (int i = 0; i < palavra.length(); i++) {
-        if (mapa[linhaInicial + i][coluna] != palavra.charAt(i)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-private boolean buscaVerticalBaixoCima(String palavra, char[][] mapa, int linhaFinal, int coluna) {
-    if (linhaFinal < palavra.length() - 1) return false;
-
-    for (int i = 0; i < palavra.length(); i++) {
-        if (mapa[linhaFinal - i][coluna] != palavra.charAt(i)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-
-    private void pesquisa(char[] letras, int j, int j2, char[][] mapa, int k) {
-
-        if (letras.length >= j2 + k) {
-            if (j2 + k >= 0 && j2 + k < 5 && letras[j2 + k] == mapa[j][j2 + k]) {
-                System.out.println("Achou a letra " + (k) + " : " + mapa[j][j2 + k]);
-            } else if (j + k >= 0 && j2 + k < 10 && letras[j2 + k] == mapa[j + k][j2]) {
-                System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2]);
-            } else if (j2 - k >= 0 && j2 + k < 5 && letras[j2 + k] == mapa[j][j2 - k]) {
-                System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2 - k]);
-            } else if (j - k >= 0 && j2 + k < 10 && letras[j2 + k] == mapa[j - k][j2]) {
-                System.out.println("Achou a letra " + (k) + " : " + mapa[j - k][j2]);
+            if (!encontrada) {
+                palavras[i][1] = "Palavra NÃO encontrada";
             }
         }
+    }
 
-        // if (letras.length >= j2 + k) {
-        // if ((j2 - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j][j2 + k]) {
-        // System.out.println("Achou a letra " + (k) + " : " + mapa[j][j2 + k]);
-        // } else if ((j - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j +
-        // k][j2]) {
-        // System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2]);
-        // } else if ((j2 - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j][j2 -
-        // k]) {
-        // System.out.println("Achou a letra " + (k) + " : " + mapa[j + k][j2 - k]);
-        // } else if ((j - k) <= (letras.length - 1) && letras[j2 + k] == mapa[j -
-        // k][j2]) {
-        // System.out.println("Achou a letra " + (k) + " : " + mapa[j - k][j2]);
-        // }
-        // }
+    private boolean buscaHorizontalEsquerdaDireita(String palavra, char[][] mapa, int linha, int colunaInicial) {
+        if (colunaInicial + palavra.length() > mapa[linha].length)
+            return false;
 
+        for (int i = 0; i < palavra.length(); i++) {
+            if (mapa[linha][colunaInicial + i] != palavra.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean buscaHorizontalDireitaEsquerda(String palavra, char[][] mapa, int linha, int colunaFinal) {
+        if (colunaFinal < palavra.length() - 1)
+            return false;
+
+        for (int i = 0; i < palavra.length(); i++) {
+            if (mapa[linha][colunaFinal - i] != palavra.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean buscaVerticalCimaBaixo(String palavra, char[][] mapa, int linhaInicial, int coluna) {
+        if (linhaInicial + palavra.length() > mapa.length)
+            return false;
+
+        for (int i = 0; i < palavra.length(); i++) {
+            if (mapa[linhaInicial + i][coluna] != palavra.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean buscaVerticalBaixoCima(String palavra, char[][] mapa, int linhaFinal, int coluna) {
+        if (linhaFinal < palavra.length() - 1)
+            return false;
+
+        for (int i = 0; i < palavra.length(); i++) {
+            if (mapa[linhaFinal - i][coluna] != palavra.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void mapaImprimir(String[][] palavras, char[][] mapa, int mapaLinhasTamanho, int mapaColunasTamanho) {
@@ -245,6 +229,6 @@ private boolean buscaVerticalBaixoCima(String palavra, char[][] mapa, int linhaF
     }
 
     public static void main(String[] args) throws Exception {
-        new TrabalhoFinal();
+        new App();
     }
 }
