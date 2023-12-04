@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public class App {
-    private App() {
+public class GuilhermeJoaoMikhaelTrabalhoFinal {
+    private GuilhermeJoaoMikhaelTrabalhoFinal() {
         Scanner scanner = new Scanner(System.in);
         final int palavrasLinhasTamanho = 5, palavrasColunasTamanho = 2, mapaLinhasTamanho = 10, mapaColunasTamanho = 5;
         String[][] palavras = new String[palavrasLinhasTamanho][palavrasColunasTamanho];
@@ -18,6 +18,7 @@ public class App {
             System.out.println("2. listar mapa");
             System.out.println("3. listar respostas");
             System.out.println("4. sair");
+            System.out.print("__ opção: ");
             int usuarioEscolha = scanner.nextInt();
             switch (usuarioEscolha) {
                 case 1:
@@ -69,9 +70,9 @@ public class App {
             String resultado = palavras[i][1];
 
             if (resultado == null || resultado.equals("Palavra NÃO encontrada")) {
-                System.out.println(palavra + ": Palavra NÃO encontrada");
+                System.out.println("Palavra NÃO encontrada: " + palavra);
             } else {
-                System.out.println(palavra + ": Encontrada na posição " + resultado);
+                System.out.println(resultado + " - " + palavra);
             }
         }
     }
@@ -131,14 +132,19 @@ public class App {
 
     private void mapaPesquisa(String[][] palavras, char[][] mapa) {
         for (int i = 0; i < palavras.length; i++) {
+            // Pegando a palavra da vez, nao foi preciso destruir em varias letras
             String palavra = palavras[i][0];
+            // Aqui segui com a mesma logica do encontrada, mas aplicando de outro jeito no
+            // codigo
             boolean encontrada = false;
 
             // Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada
             // )
+            // Usei o nome linha ao inves de j para ficar mais facil de entender o codigo
             for (int linha = 0; linha < mapa.length && !encontrada; linha++) {
                 // Em vez de fazer o IF, adicionei a validação aqui dentro do for ( !encontrada
                 // )
+                // Usei o nome coluna ao inves de j2 para ficar mais facil de entender o codigo
                 for (int coluna = 0; coluna < mapa[linha].length && !encontrada; coluna++) {
                     encontrada = buscaHorizontalEsquerdaDireita(palavra, mapa, linha, coluna) ||
                             buscaHorizontalDireitaEsquerda(palavra, mapa, linha, coluna) ||
@@ -158,10 +164,15 @@ public class App {
     }
 
     private boolean buscaHorizontalEsquerdaDireita(String palavra, char[][] mapa, int linha, int colunaInicial) {
+        // Aqui fiz aquela validação que voce havia sugerido, de verificar o tamanho da
+        // palavra com o espaco de sobra
+        // se tiver menos espacos do que a palavra, manda um false
         if (colunaInicial + palavra.length() > mapa[linha].length)
             return false;
-
+        // Aqui usei a mesma logica de percorrer a linha ou coluna ( ... + i )
         for (int i = 0; i < palavra.length(); i++) {
+            // Nesse if, ele pega a celula do mapa + 1 e compara com o a letra i da String,
+            // se nao "bater" ele retorna false
             if (mapa[linha][colunaInicial + i] != palavra.charAt(i)) {
                 return false;
             }
@@ -170,6 +181,7 @@ public class App {
     }
 
     private boolean buscaHorizontalDireitaEsquerda(String palavra, char[][] mapa, int linha, int colunaFinal) {
+        // Aqui faz o mesmo, mas de tras para frente
         if (colunaFinal < palavra.length() - 1)
             return false;
 
@@ -182,6 +194,8 @@ public class App {
     }
 
     private boolean buscaVerticalCimaBaixo(String palavra, char[][] mapa, int linhaInicial, int coluna) {
+        // Aqui ele ta somando a linha inicial com o tamanho da palavra e vendo se cabe
+        // no mapa
         if (linhaInicial + palavra.length() > mapa.length)
             return false;
 
@@ -208,7 +222,7 @@ public class App {
     private void mapaImprimir(String[][] palavras, char[][] mapa, int mapaLinhasTamanho, int mapaColunasTamanho) {
         // Escrever
         for (int i = 0; i < mapaColunasTamanho - 1; i++) {
-            System.out.print("-------");
+            System.out.print("---------------------");
         }
         System.out.println();
         for (int l = 0; l < mapaLinhasTamanho; l++) {
@@ -223,12 +237,12 @@ public class App {
             System.out.println("|");
         }
         for (int i = 0; i < mapaColunasTamanho - 1; i++) {
-            System.out.print("-------");
+            System.out.print("---------------------");
         }
         System.out.println();
     }
 
     public static void main(String[] args) throws Exception {
-        new App();
+        new GuilhermeJoaoMikhaelTrabalhoFinal();
     }
 }
